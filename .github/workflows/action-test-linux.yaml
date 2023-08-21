@@ -3,7 +3,7 @@ name: Action test Ubuntu
 on:
   push:
     paths:
-      - '.github/action-test-linux.yaml'
+      - '.github/workflows/action-test-linux.yaml'
       - 'action.yaml'
   workflow_dispatch:
 
