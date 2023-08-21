@@ -31,7 +31,6 @@ jobs:
           --data-urlencode 'client_id=${{ inputs.client_id }}' \
           --data-urlencode 'grant_type=client_credentials' \
           --data-urlencode 'client_secret=${{ inputs.client_key }}'
-        shell: bash
 
       - name: Fetch Endpoint
         run: |
