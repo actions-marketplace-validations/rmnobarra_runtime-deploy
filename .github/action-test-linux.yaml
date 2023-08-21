@@ -3,7 +3,7 @@ name: Action test Ubuntu
 on:
   push:
     paths:
-      - '.github/workflows/action-test-linux.yaml'
+      - '.github/action-test-linux.yaml'
       - 'action.yaml'
   workflow_dispatch:
 
@@ -18,8 +18,8 @@ jobs:
         os: [ubuntu-20.04, ubuntu-22.04, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
-      - name: Run STK CLI installation
-        uses: stack-spot/stk-cli-action@main
+      - name: Run runtime deploy
+        uses: rmnobarra/runtime-deploy@main
         with:
           client_id: ${{ secrets.CLIENT_ID }}
           client_key: ${{ secrets.CLIENT_KEY }}
