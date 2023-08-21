@@ -8,7 +8,7 @@
 
 ```yaml
     steps:
-      - uses: rmnobarra/runtime-deploy@v1.1
+      - uses: rmnobarra/runtime-deploy@v1
         with:
           client_id: ${{ secrets.CLIENT_ID }}
           client_key: ${{ secrets.CLIENT_KEY }}
