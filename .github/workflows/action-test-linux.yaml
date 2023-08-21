@@ -27,11 +27,12 @@ jobs:
       - name: Get Token
         shell: bash
         run: |
-          RESPONSE=`curl --location 'https://idm.stackspot.com/realms/stackspot-internal/protocol/openid-connect/token' \
+          TOKEN_OUTPUT=$(curl --location --request POST \
+          'https://idm.stackspot.com/realms/growth/protocol/openid-connect/token' \
           --header 'Content-Type: application/x-www-form-urlencoded' \
           --data-urlencode 'client_id=${{ inputs.client_id }}' \
           --data-urlencode 'grant_type=client_credentials' \
-          --data-urlencode 'client_secret=${{ inputs.client_key }}'`
+          --data-urlencode 'client_secret=${{ inputs.client_key }}')
 
       - name: Fetch Endpoint
         shell: bash
