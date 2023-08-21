@@ -18,15 +18,16 @@ runs:
       shell: bash
 
     - name: Get Token
+      shell: bash
       run: |
         curl --location 'https://idm.stackspot.com/realms/stackspot-internal/protocol/openid-connect/token' \
         --header 'Content-Type: application/x-www-form-urlencoded' \
         --data-urlencode 'client_id=${{ inputs.client_id }}' \
         --data-urlencode 'grant_type=client_credentials' \
         --data-urlencode 'client_secret=${{ inputs.client_key }}'
-      shell: bash
-
+      
     - name: Fetch Endpoint
+      shell: bash
       run: |
         curl -s "https://viacep.com.br/ws/06727010/json/" > cep_data.json
         cat cep_data.json  # Apenas para visualizar o resultado no log.
