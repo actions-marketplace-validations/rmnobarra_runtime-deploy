@@ -1,0 +1,36 @@
+name: 'Runtime Deploy'
+
+description: 'Runtime Deploy Action'
+
+inputs:
+  client_id:
+    description: Account client id
+    required: true
+  client_key:
+    description: Account client key
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Check Runner
+      run: echo 🤖 OS runner is $(uname)
+      shell: bash
+
+    - name: Get Token
+      run: |
+        curl --location 'https://idm.stackspot.com/realms/stackspot-internal/protocol/openid-connect/token' \
+        --header 'Content-Type: application/x-www-form-urlencoded' \
+        --data-urlencode 'client_id=${{ inputs.client_id }}' \
+        --data-urlencode 'grant_type=client_credentials' \
+        --data-urlencode 'client_secret=${{ inputs.client_key }}'
+      shell: bash
+
+    - name: Fetch Endpoint
+      run: |
+        curl -s "https://viacep.com.br/ws/06727010/json/" > cep_data.json
+        cat cep_data.json  # Apenas para visualizar o resultado no log.
+
+branding:
+    icon: 'terminal'
+    color: 'gray-dark'
